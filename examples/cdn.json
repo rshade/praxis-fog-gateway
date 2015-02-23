@@ -1,0 +1,8 @@
+{
+  "cloud": "RackSpace",
+  "class": "Fog::CDN",
+  "action": "create",
+  "params": {
+    "name": "example"
+  }
+}
