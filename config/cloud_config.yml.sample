@@ -1,8 +1,8 @@
 clouds:
-  - aws:
-      access_key: ABCD1234
-      secret_access_key: 1234
-  - rackspace:
-      username: user@example.com
-      api_key: 1234
+  aws:
+    access_key: ABCD1234
+    secret_access_key: 1234
+  rackspace:
+    username: user@example.com
+    api_key: 1234
 
