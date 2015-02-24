@@ -3,6 +3,7 @@
 
   Bundler.require(:default, ENV['RACK_ENV'])
   require 'yaml'
+  require 'fog/bin'
 
   # Default application layout.
   # NOTE: This layout need NOT be specified explicitly.
@@ -23,14 +24,14 @@
   end
 
   Praxis::Application.instance.config do
-    attribute :clouds, Attributor::Hash, required: true
+    attribute :providers, Attributor::Hash, required: false
   end
 
-  if File.exists?('./config/cloud_config.yml')
-    cloud_values = YAML.load(File.read('./config/cloud_config.yml'))
-    Praxis::Application.instance.config = cloud_values
+  if File.exists?('./config/.fog.yml')
+    Fog.credentials_path = './config/.fog.yml'
+    #Praxis::Application.instance.config.providers = Fog.available_providers
   else
-    raise 'config/cloud_config.yml does not exist, please edit the sample, and save as cloud_config.yml'
+    raise "no fog.yml, please fix"
   end
 
-
+  binding.pry
