@@ -23,10 +23,9 @@
       end
 
       def create(payload:)
+        binding.pry
         json_payload=JSON.parse(payload)
-        config_hash=Praxis::Application.instance.config.clouds.contents
-        current_cloud_config=config_hash[json_payload["cloud"]]
-        lbs = Fog::LoadBalancer.new(current_cloud_config)
+        lbs = Fog::LoadBalancer[json_payload["cloud"]]
         lbs.load_balancers.create(json_payload["params"])
       end
     end

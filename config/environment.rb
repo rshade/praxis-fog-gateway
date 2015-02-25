@@ -24,14 +24,13 @@
   end
 
   Praxis::Application.instance.config do
-    attribute :providers, Attributor::Hash, required: false
+    attribute :providers, Attributor::Collection, required: false
   end
 
   if File.exists?('./config/.fog.yml')
     Fog.credentials_path = './config/.fog.yml'
-    #Praxis::Application.instance.config.providers = Fog.available_providers
+    Praxis::Application.instance.config.providers = Fog.available_providers
   else
     raise "no fog.yml, please fix"
   end
-
   binding.pry
