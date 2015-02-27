@@ -28,5 +28,9 @@
         lbs = Fog::LoadBalancer[json_payload["cloud"]]
         lbs.load_balancers.create(json_payload["params"])
       end
+
+      def connect(cloud:, loadbalancer:, node:)
+        binding.pry
+      end
     end
   end

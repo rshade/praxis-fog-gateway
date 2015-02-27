@@ -33,4 +33,3 @@
   else
     raise "no fog.yml, please fix"
   end
-  binding.pry

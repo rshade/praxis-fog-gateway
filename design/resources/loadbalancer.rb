@@ -46,6 +46,19 @@
           response :ok
           response :created
         end
+        action :connect do
+          use :versionable
+
+          routing do
+            post "/connect"
+          end
+
+          params do
+            attribute :cloud, String, required: true
+          end
+
+          response :ok
+        end
       end
     end
   end
