@@ -30,7 +30,9 @@
       end
 
       def connect(cloud:)
-        binding.pry
+        payload=request.payload.contents
+        lb=Fog::LoadBalancer[cloud]
+        lb.connect(payload[:loadbalancer],payload[:node])
       end
     end
   end
