@@ -22,14 +22,14 @@
         response
       end
 
-      def create(payload:)
+      def create()
         binding.pry
         json_payload=JSON.parse(payload)
         lbs = Fog::LoadBalancer[json_payload["cloud"]]
         lbs.load_balancers.create(json_payload["params"])
       end
 
-      def connect(cloud:, loadbalancer:, node:)
+      def connect(cloud:)
         binding.pry
       end
     end

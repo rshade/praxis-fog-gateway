@@ -46,6 +46,7 @@
           response :ok
           response :created
         end
+
         action :connect do
           use :versionable
 
@@ -55,6 +56,11 @@
 
           params do
             attribute :cloud, String, required: true
+          end
+
+          payload do
+            attribute :node, String, required: true
+            attribute :loadbalancer, String, required: true
           end
 
           response :ok
