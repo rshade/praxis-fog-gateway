@@ -31,8 +31,16 @@
 
       def connect(cloud:)
         payload=request.payload.contents
-        lb=Fog::LoadBalancer[cloud]
-        lb.connect(payload[:loadbalancer],payload[:node])
+        Praxis::Application.instance.logger.error payload
+        response.headers['Content-Type'] = 'application/json'
+        case cloud.downcase
+        when "aws"
+          lb=Fog::AWS::ELB.new
+          connect=lb.register_instances_with_load_balancer([payload[:node]],payload[:loadbalancer])
+          response.body = connect.data[:body].to_json
+          response.status = connect.status
+        end
+        response
       end
     end
   end
