@@ -172,6 +172,7 @@ PLATFORMS
 
 DEPENDENCIES
   fog
+  fog-aws
   json
   praxis
   pry

@@ -65,6 +65,24 @@
 
           response :ok
         end
+        action :disconnect do
+          use :versionable
+
+          routing do
+            post "/disconnect"
+          end
+
+          params do
+            attribute :cloud, String, required: true
+          end
+
+          payload do
+            attribute :node, String, required: true
+            attribute :loadbalancer, String, required: true
+          end
+
+          response :ok
+        end
       end
     end
   end

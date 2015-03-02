@@ -5,6 +5,7 @@
   gem 'rake'
   gem 'json'
   gem 'fog'
+  gem 'fog-aws'
 
   group :development, :test do
     gem 'rspec'
