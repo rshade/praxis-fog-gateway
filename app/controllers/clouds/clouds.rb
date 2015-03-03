@@ -1,13 +1,13 @@
-  module V1
-    class Hello
-      include Praxis::Controller
+module V1
+  class Clouds
+    include Praxis::Controller
 
-      implements V1::ApiResources::Clouds
+    implements V1::ApiResources::Clouds
 
-      def index(**params)
-        response.headers['Content-Type'] = 'application/json'
-        response.body = Praxis::Application.instance.config.providers.to_json
-        response
-      end
+    def index(**params)
+      response.headers['Content-Type'] = 'application/json'
+      response.body = Praxis::Application.instance.config.providers.to_json
+      response
     end
   end
+end

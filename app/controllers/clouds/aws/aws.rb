@@ -1,5 +1,6 @@
-  module V1
-    class Hello
+module V1
+  class Clouds
+    class AWS
       include Praxis::Controller
 
       implements V1::ApiResources::Clouds::AWS
@@ -11,3 +12,4 @@
       end
     end
   end
+end
