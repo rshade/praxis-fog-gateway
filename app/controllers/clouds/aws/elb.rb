@@ -3,7 +3,6 @@
       include Praxis::Controller
 
       implements V1::ApiResources::Clouds::AWS::ELB
-      HELLO_WORLD=["not implemented"]
 
       def index(**params)
         response.headers['Content-Type'] = 'application/json'

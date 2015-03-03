@@ -1,7 +1,7 @@
 module V1
   module MediaTypes
     class Clouds
-      class AWS
+      class AWS < Praxis::MediaType
       end
     end
   end

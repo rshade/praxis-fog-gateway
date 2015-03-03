@@ -2,7 +2,7 @@ module V1
   module MediaTypes
     class Clouds
       class AWS
-    class ELB
+    class ELB < Praxis::MediaType
       include V1::MediaTypes
       identifier 'application/json'
       attributes do

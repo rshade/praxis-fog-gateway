@@ -1,51 +1,53 @@
   module V1
     module ApiResources
-      class LoadBalancer
-        include Praxis::ResourceDefinition
+      class Clouds
+        class AWS
+          class ELB
+            include Praxis::ResourceDefinition
 
-        media_type V1::MediaTypes::Clouds::AWS::ELB
-        version '1.0'
+            media_type V1::MediaTypes::Clouds::AWS::ELB
+            version '1.0'
 
-        routing do
-          prefix '/api/clouds/aws/elb'
-        end
+            routing do
+              prefix '/api/clouds/aws/elb'
+            end
 
-        action :index do
-          use :versionable
+            action :index do
+              use :versionable
 
-          routing do
-            get ''
-          end
-          response :ok
-        end
+              routing do
+                get ''
+              end
+              response :ok
+            end
 
-        action :show do
-          use :versionable
+            action :show do
+              use :versionable
 
-          routing do
-            get '/:id'
-          end
-          params do
-            attribute :id, Integer, required: true, min: 0
-          end
-          response :ok
-          response :not_found
-        end
+              routing do
+                get '/:id'
+              end
+              params do
+                attribute :id, Integer, required: true, min: 0
+              end
+              response :ok
+              response :not_found
+            end
 
-        action :create do
-          use :versionable
+            action :create do
+              use :versionable
 
-          routing do
-            post '/create'
-          end
+              routing do
+                post '/create'
+              end
 
-          params do
-            attribute :name, String, required: true
-          end
+              params do
+                attribute :name, String, required: true
+              end
 
-          response :ok
-          response :created
-        end
+              response :ok
+              response :created
+            end
 
         action :connect do
           use :versionable
@@ -86,3 +88,6 @@
       end
     end
   end
+    end
+end
+
