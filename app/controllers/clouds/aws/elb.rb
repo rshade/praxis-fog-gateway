@@ -24,9 +24,13 @@ module V1
         end
 
         def create()
-          json_payload=JSON.parse(payload)
-          lbs = Fog::LoadBalancer[json_payload["cloud"]]
-          lbs.load_balancers.create(json_payload["params"])
+          payload = request.payload.contents
+          lb = Fog::AWS::ELB.new(:region=> payload[:region])
+          response.headers['Content-Type'] = 'application/json'
+          create = lb.create_load_balancer(payload[:zones],payload[:name],payload[:listeners])
+          response.body = create.data[:body].to_json
+          response.status = create.status
+          response
         end
 
         def connect()
@@ -39,7 +43,7 @@ module V1
           response.status = connect.status
           response
         end
-        
+
         def disconnect(cloud:)
           payload=request.payload.contents
           Praxis::Application.instance.logger.error payload

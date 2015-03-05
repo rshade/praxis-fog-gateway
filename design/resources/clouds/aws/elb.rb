@@ -38,11 +38,22 @@ module V1
             use :versionable
 
             routing do
-              post '/create'
+              post ''
             end
 
-            params do
-              attribute :name, String, required: true
+            payload do
+              attribute :name, String,
+                required: true,
+                description: 'Name of ELB to create'
+              attribute :region, String,
+                required: true,
+                description: 'Region to create ELB in'
+              attribute :zones, Attributor::Collection,
+                required: true,
+                description: 'Zones you want lb to listen in'
+              attribute :listeners, Attributor::Collection,
+                required: true,
+                description: 'Array of hashes containing listeners'
             end
 
             response :ok
