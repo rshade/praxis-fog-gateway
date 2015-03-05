@@ -54,7 +54,7 @@ module V1
           response
         end
 
-        def disconnect(cloud:)
+        def disconnect()
           payload=request.payload.contents
           Praxis::Application.instance.logger.error payload
           response.headers['Content-Type'] = 'application/json'

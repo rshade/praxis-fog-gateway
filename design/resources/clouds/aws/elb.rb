@@ -86,10 +86,6 @@ module V1
               post "/connect"
             end
 
-            params do
-              attribute :cloud, String, required: true
-            end
-
             payload do
               attribute :node, String, required: true
               attribute :loadbalancer, String, required: true
@@ -97,15 +93,12 @@ module V1
 
             response :ok
           end
+
           action :disconnect do
             use :versionable
 
             routing do
               post "/disconnect"
-            end
-
-            params do
-              attribute :cloud, String, required: true
             end
 
             payload do
@@ -120,4 +113,3 @@ module V1
     end
   end
 end
-
