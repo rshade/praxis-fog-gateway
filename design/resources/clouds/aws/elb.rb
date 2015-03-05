@@ -60,6 +60,25 @@ module V1
             response :created
           end
 
+          action :delete do
+            use :versionable
+
+            routing do
+              delete ''
+            end
+
+            payload do
+              attribute :name, String,
+                required: true,
+                description: 'Name of ELB to delete'
+              attribute :region, String,
+                required: true,
+                description: 'Region ELB is in'
+            end
+            response :no_content
+            response :ok
+          end
+
           action :connect do
             use :versionable
 

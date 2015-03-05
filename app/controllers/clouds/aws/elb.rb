@@ -33,6 +33,16 @@ module V1
           response
         end
 
+        def delete()
+          payload = request.payload.contents
+          lb = Fog::AWS::ELB.new(:region=> payload[:region])
+          response.headers['Content-Type'] = 'application/json'
+          delete = lb.delete_load_balancer(payload[:name])
+          response.body = delete.data[:body].to_json
+          response.status = delete.status
+          response
+        end
+
         def connect()
           payload=request.payload.contents
           Praxis::Application.instance.logger.error payload
