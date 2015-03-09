@@ -87,6 +87,7 @@ module V1
             end
 
             payload do
+              attribute :region, String, required: true
               attribute :node, String, required: true
               attribute :loadbalancer, String, required: true
             end
@@ -102,6 +103,7 @@ module V1
             end
 
             payload do
+              attribute :region, String, required: true
               attribute :node, String, required: true
               attribute :loadbalancer, String, required: true
             end

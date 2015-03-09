@@ -44,22 +44,22 @@ module V1
         end
 
         def connect()
-          payload=request.payload.contents
+          payload = request.payload.contents
           Praxis::Application.instance.logger.error payload
           response.headers['Content-Type'] = 'application/json'
-          lb=Fog::AWS::ELB.new
-          connect=lb.register_instances_with_load_balancer([payload[:node]],payload[:loadbalancer])
+          lb = Fog::AWS::ELB.new(:region => payload[:region])
+          connect = lb.register_instances_with_load_balancer([payload[:node]],payload[:loadbalancer])
           response.body = connect.data[:body].to_json
           response.status = connect.status
           response
         end
 
         def disconnect()
-          payload=request.payload.contents
+          payload = request.payload.contents
           Praxis::Application.instance.logger.error payload
           response.headers['Content-Type'] = 'application/json'
-          lb=Fog::AWS::ELB.new
-          connect=lb.deregister_instances_from_load_balancer([payload[:node]],payload[:loadbalancer])
+          lb = Fog::AWS::ELB.new(:region => payload[:region])
+          connect = lb.deregister_instances_from_load_balancer([payload[:node]],payload[:loadbalancer])
           response.body = connect.data[:body].to_json
           response.status = connect.status
           response
