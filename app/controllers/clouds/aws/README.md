@@ -2,7 +2,9 @@
 ##Usage: https://github.com/jakubroztocil/httpie
 ##ELB -
 ###Create:
-http POST http://localhost:8888/api/clouds/aws/elb X-Api-Version:1.0 name='mylb' region='us-west-1' zones:='["us-west-1b"]' listeners:='[{ "Protocol":"HTTP", "LoadBalancerPort":80, "InstancePort":8080, "InstanceProtocol":"HTTP"}]'
+```
+http POST http://localhost:8888/api/clouds/aws/elb X-Api-Version:1.0 name='mylb' region='us-west-1' zones:='["us-west-1b"]' listeners:='[{ "Protocol":"HTTP", "LoadBalancerPort":80, "InstancePort":8080, "InstanceProtocol":"HTTP"}]' 
+```
 ###Delete: 
 http DELETE http://localhost:8888/api/clouds/aws/elb X-Api-Version:1.0 name='mylb' region='us-west-1'
 ##Tag -
