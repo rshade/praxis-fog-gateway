@@ -18,6 +18,13 @@ module V1
             routing do
               get ''
             end
+
+            params do
+              attribute :region, String,
+                required: false,
+                default: 'us-east-1'
+            end
+
             response :ok
           end
 
@@ -45,15 +52,12 @@ module V1
               attribute :region, String,
                 required: true,
                 description: 'AWS Region resource resides in'
-              attribute :resource_id, String,
+              attribute :resource_id, Attributor::Collection.of(String),
                 required: true,
-                description: 'resource_id of resource to tag'
-              attribute :key, String,
+                description: 'array of resource_id to tag'
+              attribute :tags, Attributor::Hash,
                 required: true,
-                description: 'Tag key'
-              attribute :value, String,
-                required: true,
-                description: 'Tag value'
+                description: 'Key/Value hash of tags'
             end
 
             response :ok
@@ -71,12 +75,12 @@ module V1
               attribute :region, String,
                 required: true,
                 description: 'AWS Region resource resides in'
-              attribute :resource_id, String,
+              attribute :resource_id, Attributor::Collection.of(String),
                 required: true,
-                description: 'resource_id of resource to tag'
-              attribute :key, String,
+                description: 'array of resource_ids to tag'
+              attribute :tags, Attributor::Hash,
                 required: true,
-                description: 'Tag key'
+                description: 'Key/Value hash of tags'
             end
             response :no_content
             response :ok

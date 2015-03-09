@@ -6,9 +6,13 @@ module V1
 
         implements V1::ApiResources::Clouds::AWS::Tag
 
-        def index(**params)
+        def index(region:, **params)
           response.headers['Content-Type'] = 'application/json'
-          response.body = "Index Not Defined Yet"
+          fog = Fog::Compute.new({
+            :provider => 'AWS',
+            :region => region
+          })
+          response.body = fog.describe_tags.data[:body].to_json
           response
         end
 
@@ -30,7 +34,7 @@ module V1
             :region => payload[:region]
           })
           response.headers['Content-Type'] = 'application/json'
-          create = fog.tags.create(payload[:resource_id],payload[:key],payload[:value])
+          create = fog.create_tags(payload[:resource_id],payload[:tags])
           response.body = create.data[:body].to_json
           response.status = create.status
           response
@@ -43,7 +47,7 @@ module V1
             :region => payload[:region]
           })
           response.headers['Content-Type'] = 'application/json'
-          delete = fog.tags.delete(payload[:resource_id],payload[:key])
+          delete = fog.delete_tags(payload[:resource_id],payload[:tags])
           response.body = delete.data[:body].to_json
           response.status = delete.status
           response
