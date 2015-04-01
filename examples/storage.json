@@ -1,8 +1,0 @@
-{
-  "cloud": "RackSpace",
-  "class": "Fog::Storage",
-  "action": "create",
-  "params": {
-    "name": "example"
-  }
-}
