@@ -7,8 +7,12 @@
       HELLO_WORLD = [ 'Hello world!', 'Привет мир!', 'Hola mundo!', '你好世界!', 'こんにちは世界！' ]
 
       def index(**params)
+        f=File.read('./logs/messages.log')
+        messages={}
+        messages["message"] = []
+        f.each_line { |line| messages["message"] << line }
         response.headers['Content-Type'] = 'application/json'
-        response.body = HELLO_WORLD.to_json
+        response.body = messages.to_json
         response
       end
 
