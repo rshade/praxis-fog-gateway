@@ -1,8 +1,0 @@
-{
-  "cloud": "RackSpace",
-  "class": "RackSpace::LoadBalancer",
-  "action": "create",
-  "params": {
-    "name": "example"
-  }
-}
